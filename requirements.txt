@@ -1,0 +1,28 @@
+flask>=2.3.0
+flask-cors>=4.0.0
+torch>=2.0.0
+transformers>=4.30.0
+pandas>=2.0.0
+numpy>=1.24.0
+pillow>=10.0.0
+scikit-learn>=1.3.0
+tqdm>=4.65.0
+matplotlib>=3.7.0
+
+# Optional dependencies for better performance
+# datasets>=2.14.0      # HuggingFace datasets (optional)
+# accelerate>=0.23.0    # Accelerate training (optional)
+# evaluate>=0.4.0       # Evaluation metrics (optional)
+
+# GPU support notes:
+# - To use GPU, install CUDA-enabled PyTorch:
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu118
+# - Verify GPU availability in the web page (should show GPU mode with device name)
+# - If GPU is not detected, the page will show detailed reason (e.g., CUDA version mismatch)
+
+# Windows multiprocessing notes:
+# - If you encounter multiprocessing issues on Windows, you may need:
+#   pywin32>=306  # Windows-specific extensions
+# - Or set the environment variable: PYTHONUNBUFFERED=1
+
+
