@@ -1,0 +1,35 @@
+[Unit]
+Description=Multi-Modal Fusion Prediction System
+After=network.target
+
+[Service]
+Type=notify
+User=mlapp
+Group=mlapp
+WorkingDirectory=/opt/mlapp
+Environment="PATH=/opt/mlapp/venv/bin"
+Environment="FLASK_ENV=production"
+ExecStart=/opt/mlapp/venv/bin/gunicorn \
+    --config /opt/mlapp/gunicorn_config.py \
+    api_server:app
+ExecReload=/bin/kill -s HUP $MAINPID
+KillMode=mixed
+TimeoutStopSec=5
+PrivateTmp=true
+Restart=on-failure
+RestartSec=10
+
+# 资源限制
+LimitNOFILE=65535
+LimitNPROC=4096
+
+# 安全设置
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/mlapp/uploads /opt/mlapp/results /opt/mlapp/logs
+
+[Install]
+WantedBy=multi-user.target
+
+
