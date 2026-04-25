@@ -1,0 +1,26 @@
+=== Attention-based Fusion Metrics (Test) ===
+
+{
+  "val_best_macro_f1": 0.9909855769230769,
+  "test_loss": 0.17631834447383882,
+  "test_acc": 0.895,
+  "test_macro_f1": 0.7468507021879331,
+  "test_auc": 0.9153283607473457,
+  "pos_weight": 0.1511697620153427
+}
+
+[Classification Report]
+              precision    recall  f1-score   support
+
+          -1     0.6290    0.4937    0.5532        79
+   1(merged)     0.9257    0.9559    0.9405       521
+
+    accuracy                         0.8950       600
+   macro avg     0.7773    0.7248    0.7469       600
+weighted avg     0.8866    0.8950    0.8895       600
+
+
+[Notes]
+- 已对三份 CSV 的 id/概率/真值列做鲁棒识别，常见异常会自动修复（见控制台日志）。
+- 模型学习每条样本的注意力权重，对三路 logit 做加权融合。
+- 如需在验证集上自动寻优阈值（替换固定 0.5），可扩展在训练后扫描阈值再评估测试集。
